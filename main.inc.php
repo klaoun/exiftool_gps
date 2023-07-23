@@ -20,8 +20,8 @@ function eg_format_exif_data($exif, $filepath, $map)
   $output = shell_exec('exiftool -json "'.$filepath.'"');
   $metadata = json_decode($output, true);
 
-  foreach ($metadata as $key => $section) {
-    foreach ($section as $name => $val) {
+  foreach ((array)$metadata as $key => $section) {
+    foreach ((array)$section as $name => $val) {
       if(substr( $name, 0, 3 ) === "GPS")
       {
         if($name === "GPSLatitude" or $name === "GPSLongitude")
